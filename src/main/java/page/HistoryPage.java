@@ -3,6 +3,7 @@ package page;
 import base.BasePage;
 import elements.$;
 import io.appium.java_client.android.AndroidDriver;
+import utilities.Logs;
 
 import static elements.$.LocatorType.ACCESIBILITY_ID;
 import static elements.$.LocatorType.ID;
@@ -32,6 +33,7 @@ public class HistoryPage extends BasePage {
     }
 
     public void clickOnBack() {
+        Logs.info("Clicking on Back button");
         backButton.click();
     }
 }

@@ -33,9 +33,9 @@ public class ThemePage extends BasePage {
     }
 
     public void clickOnDarkTheme() {
+        Logs.info("Clicking on darkMode theme");
         darkThemeBtn.click();
         Logs.info("clicking in ok button");
-
         okButton.click();
     }
 

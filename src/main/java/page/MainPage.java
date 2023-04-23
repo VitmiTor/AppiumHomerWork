@@ -48,15 +48,19 @@ public class MainPage extends BasePage {
 
     @Override
     public void verifyPage() {
-
+        softAssert.assertTrue(optionsInput.isDisplayed());
+        softAssert.assertAll();
     }
 
     public void clickOnOptions() {
+        Logs.info("Clicking on options");
         optionsInput.click();
     }
 
     public void clickOnThemeButton() {
+        Logs.info("waiting for visibility of options");
         chooseButton.waitforVisibility();
+        Logs.info("Clicking on options");
         chooseButton.click();
     }
 
@@ -74,12 +78,21 @@ public class MainPage extends BasePage {
         Assert.assertEquals(degOption.getText(), "DEG");
     }
 
-    public void sumNumbers(int digitA, int digitB, int digitC, int digitD, String result) {
-        numbers(digitA).click();
-        numbers(digitB).click();
+    public void sumNumbers(int a, int b, String result) {
+        final var aString = String.valueOf(a);
+        final char[] anumber = aString.toCharArray();
+        for (var i : anumber) {
+            Logs.debug(String.valueOf(i));
+            numbers(String.valueOf(i)).click();
+        }
         addSymbol.click();
-        numbers(digitC).click();
-        numbers(digitD).click();
+
+        final var bString = String.valueOf(b);
+        final char[] bnumber = bString.toCharArray();
+        for (var i : bnumber) {
+            Logs.debug(String.valueOf(i));
+            numbers(String.valueOf(i)).click();
+        }
         equals.click();
         try {
             Thread.sleep(500);
@@ -89,22 +102,22 @@ public class MainPage extends BasePage {
         Assert.assertEquals(results.getText(), result);
     }
 
-    public void multiplyNumber() throws InterruptedException {
-        var faker = new Faker();
-        var a = faker.number().randomDouble(2, 50, 325);
+    public void multiplyNumber() {
+        final var faker = new Faker();
+        final var a = faker.number().randomDouble(2, 50, 325);
         Logs.debug(String.valueOf(a));
-        var b = faker.number().randomDouble(2, 50, 325);
+        final var b = faker.number().randomDouble(2, 50, 325);
         Logs.debug(String.valueOf(b));
 
-
-        numeric.sendKeys(a + "*" + b);
-        equals.findElement();
+        Logs.info("writing numbers");
+        numeric.sendKeys(String.format("%f*%f", a, b));
+        Logs.info("Clicking on equals");
         equals.waitforVisibility(5).click();
-        Thread.sleep(1000);
-        var c = a * b;
+
+        final var c = a * b;
         Logs.debug(String.valueOf(c));
         Logs.debug(numeric.getText());
-        Thread.sleep(1000);
+
         Assert.assertEquals(numeric.getText(), String.valueOf(c));
     }
 
@@ -126,14 +139,14 @@ public class MainPage extends BasePage {
     }
 
     public void verifyingRandomNumber() {
-        var faker = new Faker();
+        final var faker = new Faker();
 
-        var number = faker.number().numberBetween(3000, 25000);
-        var stringNumber = String.valueOf(number);
+        final var number = faker.number().numberBetween(3000, 25000);
+        final var stringNumber = String.valueOf(number);
 
-        char[] eachNumber = stringNumber.toCharArray();
+        final char[] eachNumber = stringNumber.toCharArray();
         Logs.debug(String.valueOf(eachNumber));
-        for (char i : eachNumber) {
+        for (var i : eachNumber) {
             Logs.debug(String.valueOf(i));
             numbers(String.valueOf(i)).click();
         }

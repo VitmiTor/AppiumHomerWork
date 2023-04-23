@@ -22,7 +22,6 @@ public class DriverManager {
         try {
             Logs.debug("Building local driver");
             final var fileAPK = new File("src/main/resources/apk/calculator.apk");
-            //final var fileAPK = new File("src/main/resources/apk/saucelabs.apk");
             final var appiumUrl = "http://localhost:4723/wd/hub";
 
             final var desiredCapabilities = new DesiredCapabilities();
@@ -30,7 +29,6 @@ public class DriverManager {
             desiredCapabilities.setCapability("appium:ChromeOptions", ImmutableMap.of("w3c", false));
             desiredCapabilities.setCapability("autoGrantPermissions", true);
             desiredCapabilities.setCapability("appWaitActivity", "com.google.android.calculator,com.android.calculator2.Calculator");
-            //desiredCapabilities.setCapability("appWaitActivity", "com.swaglabsmobileapp.MainActivity");
             desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "mobile_emulator");
             desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
             desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");

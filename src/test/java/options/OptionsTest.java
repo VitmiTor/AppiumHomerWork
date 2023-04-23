@@ -1,3 +1,5 @@
+package options;
+
 import base.BaseTest;
 import elements.$;
 import io.appium.java_client.android.AndroidDriver;
@@ -6,14 +8,14 @@ import page.HistoryPage;
 import page.MainPage;
 import page.ThemePage;
 
-public class firstTest extends BaseTest {
+public class OptionsTest extends BaseTest {
 
     private MainPage mainPage;
     private ThemePage themePage;
     private HistoryPage historyPage;
 
     @Test
-    public void test1() {
+    public void changeToDarkTheme() {
         mainPage.waitPageToLoad();
         mainPage.clickOnOptions();
         mainPage.clickOnThemeButton();
@@ -30,27 +32,13 @@ public class firstTest extends BaseTest {
     }
 
     @Test
-    public void test2() {
+    public void changeToRad() {
         mainPage.waitPageToLoad();
         mainPage.changeToRAD();
     }
 
     @Test
-    public void test3() {
-        mainPage.waitPageToLoad();
-        mainPage.sumNumbers(1, 2, 4, 5, "57");
-    }
-
-
-    @Test
-    public void test4() throws InterruptedException {
-        mainPage.waitPageToLoad();
-        //mainPage.multiplyNumber();
-        mainPage.anotherMultiplier();
-    }
-
-    @Test
-    public void test5() {
+    public void goToHistory() {
         mainPage.waitPageToLoad();
         mainPage.historyButton();
 
@@ -60,18 +48,12 @@ public class firstTest extends BaseTest {
     }
 
     @Test
-    public void test6() {
+    public void swipeToHistory() {
         mainPage.waitPageToLoad();
         mainPage.swipe(15, 70, $.Orientation.VERTICAL);
         historyPage.waitPageToLoad();
         mainPage.swipe(70, 15, $.Orientation.VERTICAL);
         mainPage.waitPageToLoad();
-    }
-
-    @Test
-    public void test7() {
-        mainPage.waitPageToLoad();
-        mainPage.verifyingRandomNumber();
     }
 
     @Override
