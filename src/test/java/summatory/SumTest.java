@@ -18,7 +18,7 @@ public class SumTest extends BaseTest {
     @Test
     public void multiplyingNumbers() {
         mainPage.waitPageToLoad();
-        mainPage.anotherMultiplier();
+        mainPage.anotherMultiplier(122.34, 23.1);
     }
 
     @Test

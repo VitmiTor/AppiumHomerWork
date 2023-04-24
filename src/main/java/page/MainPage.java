@@ -15,7 +15,7 @@ public class MainPage extends BasePage {
     private final $ chooseButton = $(UIAUTOMATOR2, "text(\"Choose theme\")");
     private final $ degOption = $(ACCESIBILITY_ID, "degree mode");
     private final $ radOption = $(ACCESIBILITY_ID, "radian mode");
-    private final $ equals = $(ID, "com.google.android.calculator:id/eq");
+    private final $ equalsOperation = $(ID, "com.google.android.calculator:id/eq");
     private final $ multiply = $(ID, "com.google.android.calculator:id/op_mul");
     private final $ numeric = $(ID, "com.google.android.calculator:id/formula");
     private final $ results = $(ID, "com.google.android.calculator:id/result_final");
@@ -80,8 +80,8 @@ public class MainPage extends BasePage {
 
     public void sumNumbers(int a, int b, String result) {
         final var aString = String.valueOf(a);
-        final char[] anumber = aString.toCharArray();
-        for (var i : anumber) {
+        final char[] aNumber = aString.toCharArray();
+        for (var i : aNumber) {
             Logs.debug(String.valueOf(i));
             numbers(String.valueOf(i)).click();
         }
@@ -93,7 +93,7 @@ public class MainPage extends BasePage {
             Logs.debug(String.valueOf(i));
             numbers(String.valueOf(i)).click();
         }
-        equals.click();
+        equalsOperation.click();
         try {
             Thread.sleep(500);
         } catch (InterruptedException interruptedException) {
@@ -112,7 +112,7 @@ public class MainPage extends BasePage {
         Logs.info("writing numbers");
         numeric.sendKeys(String.format("%f*%f", a, b));
         Logs.info("Clicking on equals");
-        equals.waitforVisibility(5).click();
+        equalsOperation.waitforVisibility(5).click();
 
         final var c = a * b;
         Logs.debug(String.valueOf(c));
@@ -121,16 +121,35 @@ public class MainPage extends BasePage {
         Assert.assertEquals(numeric.getText(), String.valueOf(c));
     }
 
-    public void anotherMultiplier() {
-        numbers(4).click();
-        numbers(5).click();
-        point.click();
-        numbers(2).click();
-        numbers(2).click();
+    public void anotherMultiplier(double a, double b) {
+        final var c = String.valueOf(a);
+        final var d = String.valueOf(b);
+        final var operationResult = a * b;
+
+        final char[] cString = c.toCharArray();
+        for (var i : cString) {
+            if (String.valueOf(i).equals(".")) {
+                point.click();
+            } else {
+                numbers(String.valueOf(i)).click();
+            }
+        }
+        Logs.info("clicking on Multiply");
         multiply.click();
-        numbers(7).click();
-        numbers(2).click();
-        equals.click();
+
+        final char[] dString = d.toCharArray();
+        for (var i : dString) {
+            if (String.valueOf(i).equals(".")) {
+                point.click();
+            } else {
+                numbers(String.valueOf(i)).click();
+            }
+        }
+
+        Logs.info("Clicking on equals");
+        equalsOperation.click();
+
+        Assert.assertEquals(results.getText(), String.valueOf(operationResult));
     }
 
     public void historyButton() {
