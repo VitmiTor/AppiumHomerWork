@@ -78,7 +78,7 @@ public class MainPage extends BasePage {
         Assert.assertEquals(degOption.getText(), "DEG");
     }
 
-    public void sumNumbers(int a, int b, String result) {
+    public void sumNumbers(int a, int b, int result) {
         final var aString = String.valueOf(a);
         final char[] aNumber = aString.toCharArray();
         for (var i : aNumber) {
@@ -99,7 +99,7 @@ public class MainPage extends BasePage {
         } catch (InterruptedException interruptedException) {
             interruptedException.getLocalizedMessage();
         }
-        Assert.assertEquals(results.getText(), result);
+        Assert.assertEquals(results.getText(), String.valueOf(result));
     }
 
     public void multiplyNumber() {

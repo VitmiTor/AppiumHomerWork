@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class MapParser {
 
-    public Map<Integer, OperationsModel> getOperations() {
+    public static Map<Integer, OperationsModel> getOperations() {
         Logs.debug("Creating operations model");
 
         final var map = new HashMap<Integer, OperationsModel>();

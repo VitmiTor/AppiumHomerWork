@@ -1,6 +1,7 @@
 package summatory;
 
 import base.BaseTest;
+import data.DataGiver;
 import io.appium.java_client.android.AndroidDriver;
 import org.testng.annotations.Test;
 import page.MainPage;
@@ -11,14 +12,15 @@ public class SumTest extends BaseTest {
 
     @Test
     public void sumNumber() {
+        final var numbers = DataGiver.getSumNumbers();
         mainPage.waitPageToLoad();
-        mainPage.sumNumbers(233, 44, "277");
+        mainPage.sumNumbers(numbers.getNumber1(), numbers.getNumber2(), numbers.getResult());
     }
 
     @Test
     public void multiplyingNumbers() {
         mainPage.waitPageToLoad();
-        mainPage.anotherMultiplier(122.34, 23.1);
+        mainPage.anotherMultiplier(123.45, 26.4);
     }
 
     @Test
