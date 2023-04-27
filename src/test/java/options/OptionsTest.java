@@ -3,6 +3,7 @@ package options;
 import base.BaseTest;
 import elements.$;
 import io.appium.java_client.android.AndroidDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page.HistoryPage;
 import page.MainPage;
@@ -14,9 +15,13 @@ public class OptionsTest extends BaseTest {
     private ThemePage themePage;
     private HistoryPage historyPage;
 
+    @BeforeMethod
+    public void waitingPage() {
+        mainPage.waitPageToLoad();
+    }
+
     @Test
     public void changeToDarkTheme() {
-        mainPage.waitPageToLoad();
         mainPage.clickOnOptions();
         mainPage.clickOnThemeButton();
 
@@ -33,15 +38,12 @@ public class OptionsTest extends BaseTest {
 
     @Test
     public void changeToRad() {
-        mainPage.waitPageToLoad();
         mainPage.changeToRAD();
     }
 
     @Test
     public void goToHistory() {
-        mainPage.waitPageToLoad();
         mainPage.historyButton();
-
         historyPage.waitPageToLoad();
         historyPage.clickOnBack();
         mainPage.waitPageToLoad();
@@ -49,7 +51,6 @@ public class OptionsTest extends BaseTest {
 
     @Test
     public void swipeToHistory() {
-        mainPage.waitPageToLoad();
         mainPage.swipe(15, 70, $.Orientation.VERTICAL);
         historyPage.waitPageToLoad();
         mainPage.swipe(70, 15, $.Orientation.VERTICAL);
