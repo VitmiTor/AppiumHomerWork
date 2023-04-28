@@ -3,22 +3,14 @@ package options;
 import base.BaseTest;
 import elements.$;
 import io.appium.java_client.android.AndroidDriver;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page.HistoryPage;
-import page.MainPage;
 import page.ThemePage;
 
 public class OptionsTest extends BaseTest {
 
-    private MainPage mainPage;
     private ThemePage themePage;
     private HistoryPage historyPage;
-
-    @BeforeMethod
-    public void waitingPage() {
-        mainPage.waitPageToLoad();
-    }
 
     @Test
     public void changeToDarkTheme() {
@@ -59,7 +51,6 @@ public class OptionsTest extends BaseTest {
 
     @Override
     public void initPages(AndroidDriver driver) {
-        mainPage = new MainPage(driver);
         themePage = new ThemePage(driver);
         historyPage = new HistoryPage(driver);
     }

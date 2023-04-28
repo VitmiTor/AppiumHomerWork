@@ -3,18 +3,10 @@ package summatory;
 import base.BaseTest;
 import data.DataGiver;
 import io.appium.java_client.android.AndroidDriver;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page.MainPage;
 
 public class SumTest extends BaseTest {
-
-    MainPage mainPage;
-
-    @BeforeMethod
-    public void waitingPage() {
-        mainPage.waitPageToLoad();
-    }
 
     @Test
     public void sumNumber() {
