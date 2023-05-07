@@ -3,6 +3,8 @@ package utilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Formatter;
+
 public class Logs {
     public static Logger logs = LogManager.getLogger("Automation");
 
@@ -87,5 +89,21 @@ public class Logs {
 
     public static void debug(String message) {
         logs.debug(message);
+    }
+
+    public static void info(String format, Object... args) {
+        logs.info(new Formatter().format(format, args).toString());
+    }
+
+    public static void warn(String format, Object... args) {
+        logs.warn(new Formatter().format(format, args).toString());
+    }
+
+    public static void error(String format, Object... args) {
+        logs.error(new Formatter().format(format, args).toString());
+    }
+
+    public static void debug(String format, Object... args) {
+        logs.debug(new Formatter().format(format, args).toString());
     }
 }
